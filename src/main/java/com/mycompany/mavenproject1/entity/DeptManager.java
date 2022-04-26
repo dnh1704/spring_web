@@ -18,10 +18,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author dieppv
- */
+
 @Entity
 @Table(name = "dept_manager")
 @NamedQueries({

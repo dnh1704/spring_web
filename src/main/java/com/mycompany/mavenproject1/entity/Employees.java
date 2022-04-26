@@ -4,6 +4,7 @@
  */
 package com.mycompany.mavenproject1.entity;
 
+import com.mycompany.mavenproject1.request.EmployeeRequest;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -19,10 +20,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author dieppv
- */
+
 @Entity
 @Table(name = "employees")
 @NamedQueries({
@@ -72,6 +70,17 @@ public class Employees implements Serializable {
     public Employees(Integer empNo) {
         this.empNo = empNo;
     }
+    
+    public Employees(EmployeeRequest eRequest){
+        String[] arr =eRequest.getFullName().split(" ");
+        this.firstName = arr[0];
+        this.lastName = arr[1];
+        this.birthDate = eRequest.getDateBirth();
+        this.empNo = eRequest.getEmpNo();
+        this.gender = eRequest.getGender();
+        this.hireDate = eRequest.getHireDate();
+    }
+    
 
     public Employees(Integer empNo, Date birthDate, String firstName, String lastName, Character gender, Date hireDate) {
         this.empNo = empNo;
@@ -161,6 +170,8 @@ public class Employees implements Serializable {
     public void setTitlesCollection(Collection<Titles> titlesCollection) {
         this.titlesCollection = titlesCollection;
     }
+    
+ 
 
     @Override
     public int hashCode() {

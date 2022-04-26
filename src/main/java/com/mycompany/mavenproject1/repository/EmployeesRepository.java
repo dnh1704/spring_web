@@ -15,7 +15,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import com.mycompany.mavenproject1.*;
+//import com.mycompany.mavenproject1.*;
 import java.util.Date;
 
 @Repository
@@ -32,6 +32,8 @@ public interface EmployeesRepository extends  JpaRepository<Employees,Integer>{
     @Query(value = "call filter_title(:title);", nativeQuery = true)
     List<Employees> filter_title(@Param("title") String title);
     
+    
+    
     /**
      *
      * @param dateOfBir
@@ -44,15 +46,22 @@ public interface EmployeesRepository extends  JpaRepository<Employees,Integer>{
      * @param salary
      */
     @Query(value = "call insert_employees(:dateOfBir,:fullName,:gender,:hire_date,:title,:from_date,:to_date,:salary );",nativeQuery = true)
-    void insert_employee(@Param("dateOfBir") Date dateOfBir,
+    List<Employees> insert_employee(@Param("dateOfBir") Date dateOfBir,
                          @Param("fullName") String fullName,
-                         @Param("gender") String gender,
+                         @Param("gender") Character gender,
                          @Param("hire_date") Date hire_date,
                          @Param("title") String title,
                          @Param("from_date") Date from_date,
                          @Param("to_date") Date to_date,
                          @Param("salary") Integer salary);
+    
+          
+//    @Query(value = "call insert_test(:dateOfBir,:fullName,:gender,:hire_date);",nativeQuery = true)
+//    void insert_test(@Param("dateOfBir") Date dateOfBir,
+//                         @Param("fullName") String fullName,
+//                         @Param("gender") String gender,
+//                         @Param("hire_date") Date hire_date
+//                         );
+    
 }
 
-
-                   
